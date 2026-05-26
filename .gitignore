@@ -62,6 +62,7 @@ rad.json
 #License-files
 *.bclicense
 *.flf
+.antigravitycli
 #Test results file
 TestResults.xml
 >>>>>>> 2803fa32661272b054f37b621157690494699b07
