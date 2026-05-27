@@ -92,15 +92,21 @@ const HeroSection: React.FC = () => {
                   className="flex flex-wrap gap-4"
                 >
                   <Link 
+                    href="/voting" 
+                    className="px-6 py-3 bg-gradient-to-r from-rose-900 to-rose-700 text-white font-semibold rounded-lg shadow-md hover:from-rose-800 hover:to-rose-600 transition-all duration-300 flex items-center group cursor-pointer border border-rose-800/10"
+                  >
+                    Vote Now 🗳️
+                  </Link>
+                  <Link 
                     href="/schedule" 
-                    className="px-6 py-3 bg-rose-900 text-white font-medium rounded-lg shadow-md hover:bg-rose-955 transition-colors duration-200 flex items-center group"
+                    className="px-6 py-3 bg-rose-900/10 dark:bg-rose-900/30 text-rose-900 dark:text-rose-350 font-medium rounded-lg border border-rose-900/20 hover:bg-rose-900/20 transition-all duration-200 flex items-center group cursor-pointer"
                   >
                     View Schedule
                     <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </Link>
                   <Link 
                     href="/about" 
-                    className="px-6 py-3 bg-white dark:bg-neutral-900 text-rose-900 dark:text-rose-400 font-medium border border-orange-200 dark:border-neutral-800 rounded-lg hover:bg-orange-50 dark:hover:bg-neutral-800 transition-colors duration-200"
+                    className="px-6 py-3 bg-white dark:bg-neutral-900 text-rose-900 dark:text-rose-455 font-medium border border-orange-200 dark:border-neutral-800 rounded-lg hover:bg-orange-50 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer"
                   >
                     Learn More
                   </Link>
