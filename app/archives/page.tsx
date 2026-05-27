@@ -1,6 +1,3 @@
-"use client";
-
-import React from 'react';
 import PageTransition from '@/components/layout/PageTransition';
 import VideoSection from '@/components/archives/VideoSection';
 import { Video } from '../../types';
@@ -12,7 +9,7 @@ const sampleVideos: Video[] = [
     description: 'funnnn',
     thumbnailUrl: '/photos/shivam.png',
     videoUrl: '/videos/KalaChasmaBei.mp4',
-    date: '2024-07-06'
+    date: '2024-07-06',
   },
   {
     id: '2',
@@ -20,15 +17,15 @@ const sampleVideos: Video[] = [
     description: 'Ofcourse Transition is mandatory',
     thumbnailUrl: '/photos/transition.png',
     videoUrl: '/videos/TransitionBct.mp4',
-    date: '2024-07-06'
+    date: '2024-07-06',
   },
   {
     id: '3',
-    title: 'Sigma Praches Sir ',
-    description: 'Praches sir dancing With BEI/BCT Sambdhi',
+    title: 'Sigma Praches Sir',
+    description: 'Praches sir dancing With BEI/BCT Sambandhi',
     thumbnailUrl: '/photos/Sir.png',
     videoUrl: '/videos/SirDance.mp4',
-    date: '2024-07-06'
+    date: '2024-07-06',
   },
   {
     id: '4',
@@ -53,7 +50,7 @@ const sampleVideos: Video[] = [
     thumbnailUrl: '/photos/bctSenior.jpeg',
     videoUrl: '/videos/photo-montage.mp4',
     date: '2024-07-06',
-  }
+  },
 ];
 
 export default function ArchivesPage() {
@@ -66,8 +63,10 @@ export default function ArchivesPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Event Archives
             </h1>
+
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Explore and relive the exciting moments from our past Prarambha events.
+              Explore and relive the exciting moments from our past Prarambha
+              events.
             </p>
           </div>
         </div>
