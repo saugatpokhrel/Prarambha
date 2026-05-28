@@ -9,6 +9,7 @@ export interface Contestant {
   category: "mr" | "miss"
   image_url: string | null
   bio: string | null
+  department?: string | null
   created_at?: string
 }
 

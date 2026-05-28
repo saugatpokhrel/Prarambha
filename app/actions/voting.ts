@@ -14,7 +14,7 @@ export async function getContestants(): Promise<Contestant[]> {
     const supabase = await createClient()
     const { data, error } = await supabase
       .from("contestants")
-      .select("id, name, category, image_url, bio")
+      .select("id, name, category, image_url, bio, department")
       .order("name", { ascending: true })
 
     if (error) {

@@ -5,7 +5,8 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Contestant } from "@/lib/supabase/voting"
 import { VoteButton } from "./VoteButton"
-import { Sparkles } from "lucide-react"
+import { Sparkles, GraduationCap } from "lucide-react"
+import { MrAvatar, MissAvatar } from "@/components/ui/CategoryAvatar"
 
 interface ContestantCardProps {
   contestant: Contestant
@@ -26,10 +27,7 @@ export function ContestantCard({
   isLoading,
   onVote,
 }: ContestantCardProps) {
-  // Use a high-quality placeholder image if none is provided
-  const imageUrl =
-    contestant.image_url ||
-    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300&h=400"
+  const Avatar = contestant.category === "mr" ? MrAvatar : MissAvatar
 
   return (
     <motion.div
@@ -51,14 +49,18 @@ export function ContestantCard({
 
       {/* Contestant Image Container */}
       <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900 shadow-inner group">
-        <Image
-          src={imageUrl}
-          alt={contestant.name}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority={false}
-          className="object-cover object-center rounded-2xl transition-transform duration-500 group-hover:scale-105"
-        />
+        {contestant.image_url ? (
+          <Image
+            src={contestant.image_url}
+            alt={contestant.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={false}
+            className="object-cover object-center rounded-2xl transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <Avatar className="w-full h-full transition-transform duration-500 group-hover:scale-105" />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 rounded-2xl" />
       </div>
 
@@ -68,8 +70,14 @@ export function ContestantCard({
           <h3 className="font-bold text-lg md:text-xl text-neutral-900 dark:text-white group-hover:text-rose-900 dark:group-hover:text-rose-400 transition-colors duration-200">
             {contestant.name}
           </h3>
-          <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-medium line-clamp-3">
-            {contestant.bio || "No bio available for this contestant yet. Event participant for Prarambha 2082."}
+          {contestant.department && (
+            <span className="inline-flex items-center gap-1 mt-1.5 px-2.5 py-0.5 bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 text-xs font-semibold rounded-full">
+              <GraduationCap className="size-3" />
+              {contestant.department}
+            </span>
+          )}
+          <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-medium line-clamp-3">
+            {contestant.bio || "Event participant for Prarambha 2082."}
           </p>
         </div>
       </div>

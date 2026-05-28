@@ -191,7 +191,9 @@ export function VotingConsole({ contestants }: VotingConsoleProps) {
     loadVotes()
   }, [])
 
-  const filteredContestants = contestants.filter((c) => c.category === category)
+  const filteredContestants = contestants
+    .filter((c) => c.category === category)
+    .sort((a, b) => a.name.localeCompare(b.name))
   const hasVotedInCategory = userVotes.some((v) => v.category === category)
 
   const handleVote = async (contestantId: string) => {
