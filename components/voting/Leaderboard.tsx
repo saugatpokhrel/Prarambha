@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { LeaderboardEntry } from "@/lib/supabase/voting"
 import { Award, Trophy, Users } from "lucide-react"
+import { MrAvatar, MissAvatar } from "@/components/ui/CategoryAvatar"
 
 interface LeaderboardProps {
   entries: LeaderboardEntry[]
@@ -57,7 +58,8 @@ export function Leaderboard({ entries }: LeaderboardProps) {
     }
   }
 
-  const renderRankingsList = (list: LeaderboardEntry[], totalVotes: number) => {
+  const renderRankingsList = (list: LeaderboardEntry[], totalVotes: number, category: "mr" | "miss") => {
+    const Avatar = category === "mr" ? MrAvatar : MissAvatar
     if (list.length === 0) {
       return (
         <div className="flex flex-col items-center justify-center py-10 border border-dashed border-neutral-200 dark:border-white/10 rounded-2xl text-gray-400 text-xs">
@@ -71,9 +73,6 @@ export function Leaderboard({ entries }: LeaderboardProps) {
       <div className="space-y-4">
         {list.map((entry, index) => {
           const voteShare = totalVotes > 0 ? (entry.vote_count / totalVotes) * 100 : 0
-          const imageUrl =
-            entry.image_url ||
-            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100&h=100"
 
           return (
             <motion.div
@@ -90,13 +89,17 @@ export function Leaderboard({ entries }: LeaderboardProps) {
 
               {/* Contestant Avatar */}
               <div className="relative size-11 rounded-xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex-shrink-0 shadow-inner">
-                <Image
-                  src={imageUrl}
-                  alt={entry.name}
-                  fill
-                  sizes="44px"
-                  className="object-cover"
-                />
+                {entry.image_url ? (
+                  <Image
+                    src={entry.image_url}
+                    alt={entry.name}
+                    fill
+                    sizes="44px"
+                    className="object-cover"
+                  />
+                ) : (
+                  <Avatar />
+                )}
               </div>
 
               {/* Name & Progress Bar Column */}
@@ -155,7 +158,7 @@ export function Leaderboard({ entries }: LeaderboardProps) {
           </div>
         </div>
 
-        {renderRankingsList(mrEntries, totalMrVotes)}
+        {renderRankingsList(mrEntries, totalMrVotes, "mr")}
       </motion.div>
 
       {/* Miss Freshers Leaderboard */}
@@ -179,7 +182,7 @@ export function Leaderboard({ entries }: LeaderboardProps) {
           </div>
         </div>
 
-        {renderRankingsList(missEntries, totalMissVotes)}
+        {renderRankingsList(missEntries, totalMissVotes, "miss")}
       </motion.div>
     </div>
   )
