@@ -116,7 +116,8 @@ export async function updateCandidateStatus(
       console.error("Error syncing to contestants:", upsertError);
       return {
         success: false,
-        error: "Approved but failed to add to voting list: " + upsertError.message,
+        error:
+          "Approved but failed to add to voting list: " + upsertError.message,
       };
     }
   } else {
