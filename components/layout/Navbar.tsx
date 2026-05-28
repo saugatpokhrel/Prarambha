@@ -8,18 +8,18 @@ import {
   X,
   Calendar,
   Info,
-  Home,
+  // Home,
   Bell,
   Users,
   Video,
   Heart,
+  Grid3X3,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "../ui/ThemeToggle";
 import clsx from "clsx";
 
 const navItems = [
-  { path: "/", label: "Home", icon: <Home className="w-5 h-5" /> },
+  // { path: "/", label: "Home", icon: <Home className="w-5 h-5" /> },
   { path: "/about", label: "About", icon: <Info className="w-5 h-5" /> },
   {
     path: "/registration",
@@ -35,6 +35,8 @@ const navItems = [
   },
   { path: "/notices", label: "Notices", icon: <Bell className="w-5 h-5" /> },
   { path: "/archives", label: "Archives", icon: <Video className="w-5 h-5" /> },
+  { path: "/games/wordle", label: "Wordle", icon: <Grid3X3 className="w-5 h-5" /> },
+
 ];
 
 const Navbar: React.FC = () => {

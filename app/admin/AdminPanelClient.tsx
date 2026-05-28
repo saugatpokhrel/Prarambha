@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Session } from "@supabase/supabase-js";
 import AdminDashboard from "@/components/admin/AdminDashboard";
+import WordleManager from "@/components/admin/WordleManager";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -151,6 +152,9 @@ export default function AdminPanelClient({
           </Button>
         </div>
         <AdminDashboard />
+        <div className="mt-8">
+          <WordleManager />
+        </div>
         <Toaster position="bottom-right" />
       </div>
     </div>

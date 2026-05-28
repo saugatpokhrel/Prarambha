@@ -48,6 +48,13 @@ export type Candidate = {
   updated_at: string;
 };
 
+export type WordleWord = {
+  id: string;
+  word: string;
+  created_by: string | null;
+  created_at: string;
+};
+
 export type CandidateFormData = {
   full_name: string;
   category: "mr" | "miss";
