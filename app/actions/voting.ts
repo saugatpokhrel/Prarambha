@@ -2,7 +2,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { createClient } from "@/lib/supabase/server"
+import { createClient, createPublicClient } from "@/lib/supabase/server"
 import { Contestant, LeaderboardEntry } from "@/lib/supabase/voting"
 
 /**
@@ -11,7 +11,7 @@ import { Contestant, LeaderboardEntry } from "@/lib/supabase/voting"
  */
 export async function getContestants(): Promise<Contestant[]> {
   try {
-    const supabase = await createClient()
+    const supabase = createPublicClient()
     const { data, error } = await supabase
       .from("contestants")
       .select("id, name, category, image_url, bio, department")
@@ -171,7 +171,7 @@ export async function getUserVotes(): Promise<{ contestant_id: string; category:
  */
 export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
   try {
-    const supabase = await createClient()
+    const supabase = createPublicClient()
     const { data, error } = await supabase
       .from("contestant_vote_counts")
       .select("contestant_id, name, category, image_url, bio, vote_count")

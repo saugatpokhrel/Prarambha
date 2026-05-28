@@ -20,7 +20,7 @@ export async function GET(request: Request) {
       }
 
       // Allow authorized admin emails to bypass domain/voter restrictions
-      const authorizedAdmins = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || "")
+      const authorizedAdmins = (process.env.ADMIN_EMAILS || "")
         .split(",")
         .map((e) => e.trim().toLowerCase())
         .filter(Boolean)

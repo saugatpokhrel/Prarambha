@@ -1,10 +1,7 @@
 // app/voting/page.tsx
-/**
- * Next.js 16 Instant Navigation validation.
- * Enables build-time and dev-time structures checks for instantaneous page loads.
- * Matches next.js-managed guidelines inside docs/01-app/02-guides/instant-navigation.md.
- */
-export const unstable_instant = { prefetch: "static" }
+// Exempt from instant-navigation validation — this route reads cookies for auth
+// and is inherently dynamic. See docs/01-app/guides/instant-navigation.md.
+export const unstable_instant = false
 
 import { getContestants, getLeaderboard } from "@/app/actions/voting"
 import { VotingHero } from "@/components/voting/VotingHero"
