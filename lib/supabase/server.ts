@@ -40,8 +40,8 @@ export async function createClient() {
  */
 export function createPublicClient() {
   return createSupabaseClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_ANON_KEY!,
   );
 }
 
@@ -52,7 +52,7 @@ export function createPublicClient() {
  */
 export function createAdminClient() {
   return createSupabaseClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    process.env.SUPABASE_URL!,
+    process.env.SERVICE_ROLE_KEY!,
   );
 }

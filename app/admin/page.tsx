@@ -7,7 +7,7 @@ import AdminDashboard from "@/components/admin/AdminDashboard";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 
-const AUTHORIZED_ADMINS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || "")
+const AUTHORIZED_ADMINS = (process.env.ADMIN_EMAILS || "")
   .split(",")
   .map((email) => email.trim().toLowerCase());
 

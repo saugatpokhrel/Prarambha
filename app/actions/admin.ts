@@ -5,7 +5,7 @@ import { createAdminClient, createClient } from "@/lib/supabase/server";
 import { Candidate } from "@/types/index";
 
 function getAuthorizedAdmins(): string[] {
-  return (process.env.NEXT_PUBLIC_ADMIN_EMAILS || "")
+  return (process.env.ADMIN_EMAILS || "")
     .split(",")
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean);
