@@ -35,6 +35,17 @@ export async function createClient() {
 }
 
 /**
+ * Creates a public anon Supabase client without cookie access.
+ * Use for server-side reads that don't require user authentication.
+ */
+export function createPublicClient() {
+  return createSupabaseClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  );
+}
+
+/**
  * Creates a service role Supabase client.
  * This client bypasses RLS policies and should only be used in server-side code.
  * IMPORTANT: Never expose the service role key to the client.
