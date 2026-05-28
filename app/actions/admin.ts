@@ -4,13 +4,6 @@ import { revalidatePath } from "next/cache";
 import { createAdminClient, createClient } from "@/lib/supabase/server";
 import { Candidate } from "@/types/index";
 
-function getAuthorizedAdmins(): string[] {
-  return (process.env.NEXT_PUBLIC_ADMIN_EMAILS || "")
-    .split(",")
-    .map((e) => e.trim().toLowerCase())
-    .filter(Boolean);
-}
-
 async function verifyAdminAccess(): Promise<
   { userId: string } | { error: string }
 > {
@@ -24,12 +17,23 @@ async function verifyAdminAccess(): Promise<
     return { error: "Authentication required" };
   }
 
-  const userEmail = session.user.email?.toLowerCase() || "";
-  if (!getAuthorizedAdmins().includes(userEmail)) {
+  const adminClient = createAdminClient();
+  const { data: profile, error: profileError } = await adminClient
+    .from("profiles")
+    .select("is_admin")
+    .eq("id", session.user.id)
+    .single();
+
+  if (profileError || !profile?.is_admin) {
     return { error: "Admin access required" };
   }
 
   return { userId: session.user.id };
+}
+
+export async function checkIsAdmin(): Promise<boolean> {
+  const result = await verifyAdminAccess();
+  return !("error" in result);
 }
 
 export async function fetchAllCandidates(

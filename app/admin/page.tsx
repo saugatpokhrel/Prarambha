@@ -6,10 +6,7 @@ import { Session } from "@supabase/supabase-js";
 import AdminDashboard from "@/components/admin/AdminDashboard";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
-
-const AUTHORIZED_ADMINS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || "")
-  .split(",")
-  .map((email) => email.trim().toLowerCase());
+import { checkIsAdmin } from "@/app/actions/admin";
 
 export default function AdminPage() {
   const [loading, setLoading] = useState(true);
@@ -31,8 +28,8 @@ export default function AdminPage() {
           return;
         }
 
-        const userEmail = (currentSession.user?.email || "").toLowerCase();
-        setIsAdmin(AUTHORIZED_ADMINS.includes(userEmail));
+        const adminStatus = await checkIsAdmin();
+        setIsAdmin(adminStatus);
       } catch (error) {
         console.error("Auth check failed:", error);
       } finally {
@@ -44,11 +41,11 @@ export default function AdminPage() {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session);
       if (session) {
-        const userEmail = (session.user?.email || "").toLowerCase();
-        setIsAdmin(AUTHORIZED_ADMINS.includes(userEmail));
+        const adminStatus = await checkIsAdmin();
+        setIsAdmin(adminStatus);
       } else {
         setIsAdmin(false);
       }
