@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
           </Link>
 
           <div className="flex items-center lg:hidden gap-3">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}

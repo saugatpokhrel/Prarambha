@@ -32,13 +32,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-white dark:bg-black text-gray-900 dark:text-white antialiased">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <Navbar />
           <main className="flex-grow">
             {children}
           </main>
           <Footer />
-        </ThemeProvider>
       </body>
     </html>
   );
